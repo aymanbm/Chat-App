@@ -1,0 +1,177 @@
+.chat{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(143, 143, 144, 0.5);
+    border-right: 1px solid rgba(143, 143, 144, 0.5);
+    .top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid rgba(143, 143, 144, 0.5);
+        .user{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            .texts{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                span{
+                    font-weight: 500;
+                }
+                p{
+                    font-weight: 300;
+                    font-size: 12px;
+                    color: #a5a5a5;
+                }
+            }
+            img{
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+        .icons{
+            display: flex;
+            gap: 20px;
+            img{
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+    .center{
+        flex: 1;
+        padding: 20px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .message{
+            max-width: 70%;
+            display: flex;
+            gap: 20px;
+        
+            &.own{
+                align-self: flex-end;
+                .texts{
+                    p{
+                        background-color: #5183fe;
+                    }
+                }
+            }
+            img{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            .texts{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                p{
+                    padding: 20px;
+                    background-color: rgba(17, 25, 40,0.3);
+                    border-radius: 10px;
+                }
+                span{
+                    font-size: 13px;
+                }
+                img,.modalImg{
+                    width: 100%;
+                    height: 300px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                }
+                
+                .modalBtn{
+                    border: none;
+                    outline: none;
+                    background-color: transparent;
+                    width: fit-content;
+                    height: fit-content;
+                }
+                
+            }
+            
+        }
+        .uploadImg{
+                width: 100px !important;
+                height: 100px !important;
+                border-radius: 10px !important;
+                object-fit: cover !important;
+        }
+        
+    }
+
+    .bottom{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 20px;
+        margin-top: 20px;
+        border-top: 1px solid rgba(70, 70, 72, 0.5);
+
+        .icons{
+            display: flex;
+            gap:20px;
+        }
+        img{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        input{
+            border: none;
+            outline: none;
+            background-color: rgba(19, 19, 67,0.5);
+            flex: 1;
+            padding: 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: 300;
+            border-radius: 10px;
+            &:disabled{
+                cursor: not-allowed;
+            }
+        }
+        .sendButton{
+            border: none;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            background-color: #5183fe;
+            cursor: pointer;
+            &:disabled{
+                cursor: not-allowed;
+            }
+        }
+        .emoji{
+            position: relative;
+            .picker{
+                position: absolute;
+                bottom: 50px;
+                left :0px;
+            }
+        }
+    }
+    
+}
+.mantine-Modal-content{
+    background-color: transparent !important; 
+    .mantine-Modal-body{
+    /* width: 500px !impor  tant; */
+    /* height: 500px !important; */
+    padding: 0 !important;
+    margin: 0 !important;
+}
+}

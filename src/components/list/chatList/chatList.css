@@ -1,0 +1,96 @@
+.chatList{
+    flex: 1;
+    overflow-y: auto;
+    display: inherit;
+    flex-direction: inherit;
+    .search{
+       display: flex;
+       gap: 20px;
+       align-items: center;
+       padding: 20px; 
+    
+       .searchBar{
+        flex: 1;
+        background-color: rgba(17, 25, 40,0.5);
+        color: wheat;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        
+        input{
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+            flex: 1;
+        }
+        img{
+            width: 20px;
+            height: 20px;
+        }
+       }
+       .add{
+           width: 36px;
+           height: 36px;
+           padding: 10px;
+           border-radius: 10px;
+           cursor: pointer;
+           background-color: rgba(17, 25, 40,0.5);
+
+       }
+    }
+    
+    .listItems{
+        flex: 1;
+        overflow-y: auto;
+        .item{
+            display: flex;
+            border-bottom: 1px solid rgba(143, 143, 144, 0.5);
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+            cursor: pointer;
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            .texts{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                span{
+                    font-weight: 500;
+                }
+                p{
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+            }
+        }
+        
+    }
+    
+}
+::-webkit-scrollbar{
+    width: 3px;
+    transition:smooth 0.5s;
+    scroll-behavior: smooth;
+
+
+}
+::-webkit-scrollbar-track{
+    background: transparent;
+    scroll-behavior: smooth;
+
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #111928;
+    scroll-behavior: smooth;
+
+ 
+}
