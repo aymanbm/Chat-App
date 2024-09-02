@@ -48,7 +48,7 @@ const Login = () => {
             })
             toast.success("Account Created! You can loging now!");
         }catch(err){
-            toast.error(err.message);
+            toast.error("Something went Wrong!");
         }finally{
             setLoading(false);
         }
@@ -62,9 +62,10 @@ const Login = () => {
         try{
 
             await signInWithEmailAndPassword(auth,email,password)
+            toast.success("Successfuly logged in!");
         }catch(err){
             console.log(err);
-            toast.error(err.message);
+            toast.error("Something went Wrong!");
         }finally{
             setLoading(false);
         }

@@ -1,12 +1,13 @@
 .detail{
     flex: 1;
+    overflow: auto;
     .user{
         display: flex;
         flex-direction: column;
         border-bottom: 1px solid rgba(143, 143, 144, 0.5);
         align-items: center;
         padding: 30px 20px;
-        gap: 15px;
+        gap: 5px;
         img{
             width: 100px;
             height: 100px;
@@ -78,7 +79,7 @@
             }
         button{
             background-color: rgba(230,74,105,0.553);
-            padding: 10px 20px;
+            padding: 0.6rem 1.5rem;
             color: white;
             border-radius: 5px;
             cursor: pointer;

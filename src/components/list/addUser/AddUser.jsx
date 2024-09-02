@@ -1,4 +1,4 @@
-import { arrayUnion, collection, doc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
+import { arrayUnion, collection ,doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
 import "./addUser.css"
 import { db } from "../../../lib/firebase"
 import { useState } from "react"
@@ -14,16 +14,40 @@ const AddUser = () => {
         const username = formData.get("username")
 
         try{
+                
+                    const userRef = collection(db, "users");
+                    const q = query(
+                        userRef,
+                        where("id", "!=", currentUser.id),
+                        where("username", "==", username)  
+                    );
+                    
+                    const querySnapshot = await getDocs(q);
 
-            const userRef = collection(db, "users");
+                    if(!querySnapshot.empty){
+                        const userChatsRef2 = collection(db, "userchats");
+                        const docUserChatsSnap = await getDoc(doc(userChatsRef2, currentUser.id))
 
-            const q = query(userRef, where("username", "==", username));
+                        const chatItem = docUserChatsSnap.data().chats.
+                        find((item)=>item.receiverId === querySnapshot.docs[0].data().id)
 
-            const querySnapshot = await getDocs(q);
+                        const friendStatue = chatItem ? chatItem.friends : false;
+                        setUser({
+                            ...querySnapshot.docs[0].data(),
+                            friends : friendStatue,
+                        })
 
-            if(!querySnapshot.empty){
-                setUser(querySnapshot.docs[0].data())
-            }
+                        
+                    }else{
+                        setUser(null)
+                    }
+
+                    
+                    
+                // }
+                
+                
+            
         }catch(err){
             console.log(err)
         }
@@ -45,6 +69,7 @@ const AddUser = () => {
                 chats:arrayUnion({
                     chatId : newChatRef.id,
                     lastMessage : "",
+                    friends : true,
                     receiverId : user.id,
                     updateAt : Date.now(),
                 })
@@ -54,10 +79,12 @@ const AddUser = () => {
                 chats:arrayUnion({
                     chatId : newChatRef.id,
                     lastMessage : "",
+                    friends : true,
                     receiverId : currentUser.id,
                     updateAt : Date.now(),
                 })
             })
+            setUser(null)
         }catch(err){
             console.log(err);
             
@@ -67,7 +94,7 @@ const AddUser = () => {
         <div className="addUser">
             
             <form onSubmit={handleSearch}>
-                <input type="text" placeholder="Username" name="username" />
+                <input type="text" placeholder="Username..." name="username" />
                 <button>Search</button>
             </form>
             {user&&<div className="user">
@@ -75,7 +102,7 @@ const AddUser = () => {
                     <img src={user.avatar || "./avatar.png"} alt="" />
                     <span>{user.username}</span>
                 </div>
-                <button onClick={handleAdd}>Add User</button>
+                <button onClick={handleAdd} disabled={user.friends&&user.friends}>{user.friends&&user.friends ? "Already a freind": "Add User"}</button>
             </div>}
         </div>
      );

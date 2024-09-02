@@ -1,4 +1,5 @@
 .addUser{
+    z-index: 999;
     position: absolute;
     padding: 30px;
     top: 0;
